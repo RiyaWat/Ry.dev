@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+    background: #07080a;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #e8e8ea;
+    overflow-x: hidden;
+}
+
+code, .mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.display-font {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.02em;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0a0b0d; }
+::-webkit-scrollbar-thumb { background: #1f2126; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #2d3036; }
+
+/* Selection */
+::selection { background: #dc2626; color: #f8fafc; }
+
+/* Grain overlay */
+.grain::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.9'/></svg>");
+    mix-blend-mode: overlay;
+}
+
+/* Web / spider pattern - subtle background */
+.spider-web {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'><g fill='none' stroke='%23dc2626' stroke-width='0.6' opacity='0.28'><circle cx='400' cy='400' r='60'/><circle cx='400' cy='400' r='130'/><circle cx='400' cy='400' r='210'/><circle cx='400' cy='400' r='300'/><circle cx='400' cy='400' r='390'/><line x1='400' y1='0' x2='400' y2='800'/><line x1='0' y1='400' x2='800' y2='400'/><line x1='118' y1='118' x2='682' y2='682'/><line x1='682' y1='118' x2='118' y2='682'/><line x1='400' y1='0' x2='120' y2='800' stroke-dasharray='2 4'/><line x1='400' y1='0' x2='680' y2='800' stroke-dasharray='2 4'/><line x1='0' y1='400' x2='800' y2='120' stroke-dasharray='2 4'/><line x1='0' y1='400' x2='800' y2='680' stroke-dasharray='2 4'/></g></svg>");
+    background-size: 900px 900px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Marquee */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 30s linear infinite; }
+
+/* Slow spin for spider loader */
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spin-slow 2.4s linear infinite; transform-origin: center; }
+
+/* Sticky-link effect: bouncy stick on hover */
+.sticky-link {
+    display: inline-block;
+    transition: transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.sticky-link:hover {
+    transform: translateY(-2px) scale(1.04);
+}
+
+/* Sticky-CTA effect for buttons */
+.sticky-cta {
+    transition: transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.sticky-cta:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* Reveal */
+.reveal-up { opacity: 0; transform: translateY(30px); transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.reveal-up.in { opacity: 1; transform: translateY(0); }
+
+/* Spidey glow */
+.hero-glow {
+    background: radial-gradient(ellipse at center, rgba(220,38,38,0.22) 0%, rgba(30,64,175,0.10) 40%, rgba(220,38,38,0) 70%);
+}
+
+/* Loader */
+.loader-bar { background: linear-gradient(90deg, transparent, #dc2626, transparent); }
+
+@layer base {
+  :root {
+        --background: 222 14% 4%;
+        --foreground: 240 6% 91%;
+        --card: 222 14% 6%;
+        --card-foreground: 240 6% 91%;
+        --popover: 222 14% 6%;
+        --popover-foreground: 240 6% 91%;
+        --primary: 0 74% 50%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 222 14% 10%;
+        --secondary-foreground: 240 6% 91%;
+        --muted: 222 14% 10%;
+        --muted-foreground: 240 4% 60%;
+        --accent: 220 70% 45%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 84% 55%;
+        --destructive-foreground: 240 6% 91%;
+        --border: 222 10% 14%;
+        --input: 222 10% 14%;
+        --ring: 0 74% 50%;
+        --radius: 0.5rem;
+    }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
+}
+
+/* Desktop hero mask: starts just past the end of "SOFTWARE" so the two never touch.
+   The headline sits in a 1400px centered column with 3rem side padding, and the word
+   ends about 4.76em from its left edge (Bebas Neue). Phone and tablet use Hero.jsx's classes. "#home" outranks the md: utilities. */
+@media (min-width: 1024px) {
+  #home .hero-mask {
+    left: calc(max(0px, (100% - 1400px) / 2) + 3rem + 8.5rem * 4.76 + 2rem);
+    right: 0;
+    width: auto;
+    top: 12%;
+    bottom: 8%;
+  }
+}
+@media (min-width: 1280px) {
+  #home .hero-mask {
+    left: calc(max(0px, (100% - 1400px) / 2) + 3rem + 11rem * 4.76 + 1.5rem);
+  }
+}
