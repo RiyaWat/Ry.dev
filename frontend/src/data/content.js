@@ -40,13 +40,13 @@ export const projects = [
     title: "DriveHive",
     category: "Social Web App",
     year: "2026",
-    status: "Built",
+    status: "Live",
     description:
       "A social app for car enthusiasts: post your build, find local meets, and DM real mechanics. Instagram-style feed with photo and video posts, 24-hour stories, likes and comments, user-hosted car meets, follow and crew DMs, notifications and search, wrapped in a black-and-yellow hive look.",
     stack: ["React", "Tailwind CSS", "shadcn/ui", "FastAPI", "MongoDB", "JWT auth", "Stripe"],
     image: "/projects/drivehive.jpg",
     repo: "https://github.com/RiyaWat/DriveHive",
-    live: null,
+    live: "https://drivehive-ten.vercel.app",
     color: "#facc15",
   },
   {
@@ -60,7 +60,7 @@ export const projects = [
     stack: ["Chrome Extension (MV3)", "JavaScript", "React", "FastAPI", "AI vision models"],
     image: "/projects/truthlens.jpg",
     repo: "https://github.com/RiyaWat/TruthLens",
-    live: null,
+    live: "https://truth-lens-wine.vercel.app",
     color: "#2563eb",
   },
   {
@@ -88,7 +88,7 @@ export const projects = [
     stack: ["React", "Tailwind CSS", "3D model-viewer"],
     image: "/projects/portfolio.jpg",
     repo: "https://github.com/RiyaWat/Ry.dev",
-    live: null,
+    live: "https://ryreign.vercel.app",
     color: "#dc2626",
   },
 ];
